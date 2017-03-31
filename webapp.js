@@ -1,8 +1,20 @@
-// BEGINNING STORY FUNCTIONS //
+// BEGINNING STORY FUNCTION //
 
 function showFrontPage()	{
 	document.getElementById('story').style.display = "none";
 	document.getElementById('beginning').style.display = "none";
+	document.getElementById('frontpage').style.display = "block";
+}
+
+// OPTIONS PAGE FUNCTIONS //
+
+function goToOptions()	{
+	document.getElementById('frontpage').style.display = "none";
+	document.getElementById('options').style.display = "block";
+}
+
+function backToHomeScreen()	{
+	document.getElementById('options').style.display = "none";
 	document.getElementById('frontpage').style.display = "block";
 }
 
@@ -49,12 +61,20 @@ function playAudio()	{
 	setTimeout(audioPlayWhip, 3000);
 }
 
+function mute()	{
+	document.getElementById('animation').removeEventListener('click', playAudio);
+}
+
+function unmute()	{
+	document.getElementById('animation').addEventListener('click', playAudio, true);
+}
+
 // TIMER FUNCTIONS //
 
 function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
+	var timer = duration, minutes, seconds;
     var x = setInterval(function () {
-        seconds = parseInt(timer % 30, 10);
+		seconds = parseInt(timer % 100, 10);
 
         seconds = seconds < 10 ? "0" + seconds : seconds;
 		
@@ -72,14 +92,27 @@ function startTimer(duration, display) {
 			location.reload();
 		}
 		
-		if (seconds == 2)	{
+		if (seconds == 2 && minutes == 0)	{
 			setTimeout(function()	{ display.textContent = "0:01"; }, 1000);
 			var y = setTimeout(function()	{ alert('you lose'); }, 1000); 
 		}
 
-        if (--timer < 0) {
+        if (--timer < 0 && minutes == 0) {
 			alert('you lose');
         }
+		
+		if(seconds == 60 && minutes == 1)	{
+			display.textContent = "1:00";
+		}
+		
+		if(minutes == 1)	{
+			seconds -= 60;
+		}
+		
+		if(seconds > 1 && minutes == 1)	{
+			seconds -= 60;
+		}
+		
     }, 1000);
 	
 	for( var i = 1; i <= 16; i++ ) {
@@ -120,14 +153,47 @@ function startTimer(duration, display) {
 	}
 }
 
-function timer()	{
+function thirty()	{
 	setTimeout(function() {
-    	var thirtySeconds = 30 * 5,
+    	var thirtySeconds = 130,
         display = document.querySelector('#time');
     	startTimer(thirtySeconds, display);
 	}, 3000);
 }
 
+function fourtyFive()	{
+	setTimeout(function() {
+    	var fourtyFiveSeconds = 145,
+        display = document.querySelector('#time');
+    	startTimer(fourtyFiveSeconds, display);
+	}, 3000);	
+}
+
+function sixty()	{
+	setTimeout(function() {
+    	var sixtySeconds = 160,
+        display = document.querySelector('#time');
+    	startTimer(sixtySeconds, display);
+	}, 3000);	
+}
+
+function thirtySeconds()	{
+	document.getElementById('animation').addEventListener('click', thirty, true);
+	document.getElementById('animation').removeEventListener('click', sixty);
+	document.getElementById('animation').removeEventListener('click', fourtyFive);
+}
+
+function sixtySeconds()	{
+	document.getElementById('animation').addEventListener('click', sixty, true);
+	document.getElementById('animation').removeEventListener('click', thirty);
+	document.getElementById('animation').removeEventListener('click', fourtyFive);
+}
+
+function fourtyFiveSeconds()	{
+	document.getElementById('animation').addEventListener('click', fourtyFive, true);
+	document.getElementById('animation').removeEventListener('click', sixty);
+	document.getElementById('animation').removeEventListener('click', thirty);
+}
 
 // RANDOM NUMBER FROM MINIMUM VALUE TO MAXIMUM VALUE //	 
 

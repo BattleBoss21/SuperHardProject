@@ -31,17 +31,17 @@
 		</div>
 		
 		<p>
-			<input type="button" value="Play" class="start button" onclick="beginGame();timer();blurFunction(1);dim();playAudio();" id="animation">
+			<input type="button" value="Play" class="start button" onclick="beginGame();blurFunction(1);dim();playAudio();thirty();" id="animation">
 		</p>
 		<p>
-			<input type="button" value="Options" class="start button" onclick="beginGame();" id="animation2">
+			<input type="button" value="Options" class="start button" onclick="goToOptions();" id="animation2">
 		</p>
 	</div>
 </div>
 
 <!-- TIMER -->
 	
-	<span id="time">00:30</span>
+<span id="time"></span>
 
 <!-- AUDIO -->
 
@@ -67,10 +67,44 @@
 
 <!-- COUNTDOWN -->
 
-	<div id = "countdownThree">3</div>
-	<div id = "countdownTwo">2</div>
-	<div id = "countdownOne">1</div>
+<div id="countdownThree">3</div>
+<div id="countdownTwo">2</div>
+<div id="countdownOne">1</div>
 	
+<!-- OPTIONS PAGE -->
+
+<div id="options">
+	<h1 id="timeText">Time:</h1>
+	<div id="chooseTime">
+		<input type="button" value="30 seconds" onClick="thirtySeconds();" id="thirty">
+		<input type="button" value="45 seconds" onClick="fourtyFiveSeconds();" id="sixty">
+		<input type="button" value="60 seconds" onClick="sixtySeconds();" id="ninety">
+	</div>
+	
+	<div id="rules">
+		<h1 id="ruleHeading">Rules:</h1>
+		<ol id="ruleList">
+			<li>Try to spot the different colored cell in the grid.</li>
+			<li>Click that cell to move on to the next grid.</li>
+			<li>If you are able to complete all the grids in the given time, you win.</li>
+			<li>If you are not able to complete all the grids in the given time, you lose.</li>
+		</ol>
+	</div>
+	
+	<div id="backButton">
+		<input type="button" value="&lt; back" onClick="backToHomeScreen();" id="back">
+	</div>
+	
+	<div id="mutebutton">
+		<input type="checkbox" name="un-mute" id="un-mute">
+    	<label for="un-mute" class="unmute">
+        	<img src="http://upload.wikimedia.org/wikipedia/commons/3/3f/Mute_Icon.svg" alt="Mute_Icon.svg" title="Mute icon" onClick = "unmute();">
+   	 	</label>
+    	<label for="un-mute" class="mute">
+      		<img src="http://upload.wikimedia.org/wikipedia/commons/2/21/Speaker_Icon.svg" alt="Speaker_Icon.svg" title="Unmute/speaker icon" height="50px" width="50px" style="float: right; margin-top: -3%" onClick = "mute();">
+    	</label>
+	</div>
+</div>
 	
 <!-- 4X4 CELL STRUCTURE -->
 	
